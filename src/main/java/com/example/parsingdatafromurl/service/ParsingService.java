@@ -43,7 +43,7 @@ public class ParsingService {
 
 
     /**
-for test : http://localhost:8080/api/parseUrl?url=https://microsoftedge.github.io/Demos/json-dummy-data/512KB.json
+     * for test : http://localhost:8080/api/parseUrl?url=https://microsoftedge.github.io/Demos/json-dummy-data/512KB.json
      */
     public String parseJson(String url) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -66,15 +66,12 @@ for test : http://localhost:8080/api/parseUrl?url=https://microsoftedge.github.i
      * וקוראת למתודה המתאימה.
      */
     public String parseUrl(String url) throws IOException {
-        try {
-            // Try to parse as JSON
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.readTree(new URL(url));  // throws if not JSON
-            return parseJson(url);
-        } catch (Exception e) {
-            // Not valid JSON, try HTML
-            return parseHtml(url);
-        }
+            if (url.endsWith(".json")) {
+                return parseJson(url);
+            } else {
+                return parseHtml(url);
+            }
     }
+
 
 }

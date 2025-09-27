@@ -50,7 +50,6 @@ public class LinkMonitorService {
                 parsingDataMangerService.saveOrUpdateParsingData(url, newResult);
                 System.out.println("👀 התחלת מעקב אחרי: " + url + " => " + newResult);
             } else if (!last.equals(newResult)) {
-                parsingDataMangerService.saveOrUpdateParsingData(url, newResult);
                 System.out.println("⚡ שינוי התגלה ב-" + url + ":\nישן: " + last + "\nחדש: " + newResult);
             } else {
                 System.out.println("✔ אין שינוי ב-" + url);
