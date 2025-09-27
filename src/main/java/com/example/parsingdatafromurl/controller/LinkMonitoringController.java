@@ -5,6 +5,7 @@ import com.example.parsingdatafromurl.model.ParsingData;
 import com.example.parsingdatafromurl.reposetory.ParsingDataRepository;
 import com.example.parsingdatafromurl.service.LinkMonitorService;
 import com.example.parsingdatafromurl.service.ParsingDataMangerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Map;
 @RequestMapping("/api/monitor")
 @CrossOrigin(origins = "*")
 public class LinkMonitoringController {
+    @Autowired
     private ParsingDataMangerService parsingDataMangerService;
     private final LinkMonitorService monitorService;
 

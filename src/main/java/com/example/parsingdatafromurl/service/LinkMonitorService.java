@@ -23,8 +23,9 @@ public class LinkMonitorService {
     // שמירה של ה-Future של כל לינק
     private final ConcurrentHashMap<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
 
-    public LinkMonitorService(ParsingService parsingService) {
+    public LinkMonitorService(ParsingService parsingService, ParsingDataMangerService parsingDataMangerService) {
         this.parsingService = parsingService;
+        this.parsingDataMangerService = parsingDataMangerService;
     }
 
     public void addLinkForMonitoring(String url, long intervalSeconds) {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @Service
 public class ParsingService {
+    @Autowired
     private ParsingDataMangerService parsingDataMangerService;
 
 
