@@ -78,7 +78,9 @@ public class LinkMonitorService {
     }
 
     public void shutdownALL(){
-        scheduler.shutdown();
+        for(String url : scheduledTasks.keySet()){
+            stopMonitoring(url);
+        }
     }
 
 }
