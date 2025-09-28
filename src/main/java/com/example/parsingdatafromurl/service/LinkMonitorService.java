@@ -1,11 +1,8 @@
 package com.example.parsingdatafromurl.service;
 
-import com.example.parsingdatafromurl.model.ParsingData;
-import com.example.parsingdatafromurl.service.ParsingDataMangerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
@@ -49,17 +46,18 @@ public class LinkMonitorService {
 
             if (last == null) {
                 parsingDataMangerService.saveOrUpdateParsingData(url, newResult);
-                System.out.println("👀 התחלת מעקב אחרי: " + url + " => " + newResult);
+                System.out.println("👀 Started tracking: " + url + " => " + newResult);
             } else if (!last.equals(newResult)) {
-                System.out.println("⚡ שינוי התגלה ב-" + url + ":\nישן: " + last + "\nחדש: " + newResult);
+                System.out.println("⚡ Change detected at " + url + ":\nOld: " + last + "\nNew: " + newResult);
             } else {
-                System.out.println("✔ אין שינוי ב-" + url);
+                System.out.println("✔ No change at " + url);
             }
+
 
             lastResults.put(url, newResult);
 
         } catch (Exception e) {
-            System.err.println("✖ שגיאה בבדיקה של " + url + ": " + e.getMessage());
+            System.err.println("✖ Error while checking " + url + ": " + e.getMessage());
         }
     }
 
@@ -72,7 +70,7 @@ public class LinkMonitorService {
         ScheduledFuture<?> future = scheduledTasks.remove(url);
         if (future != null) {
             future.cancel(true);
-            System.out.println("🛑 ניטור הופסק עבור: " + url);
+            System.out.println("🛑 Monitoring stopped for: " + url);
         }
 
         // הסרת התוצאה האחרונה

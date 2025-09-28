@@ -33,6 +33,10 @@ const App = () => {
         }
     }, []);
 
+    useEffect(()=>{
+        fetchAllData();
+    },[isLoading]);
+
     useEffect(() => {
         fetchAllData();
         const intervalId = setInterval(fetchStatuses, 5000); // Poll for statuses every 5 seconds

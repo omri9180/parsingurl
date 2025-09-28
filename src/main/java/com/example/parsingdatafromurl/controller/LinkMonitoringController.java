@@ -2,7 +2,6 @@ package com.example.parsingdatafromurl.controller;
 
 
 import com.example.parsingdatafromurl.model.ParsingData;
-import com.example.parsingdatafromurl.reposetory.ParsingDataRepository;
 import com.example.parsingdatafromurl.service.LinkMonitorService;
 import com.example.parsingdatafromurl.service.ParsingDataMangerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,12 @@ public class LinkMonitoringController {
     @PostMapping("/add")
     public String addLink(@RequestParam String url,
                           @RequestParam(defaultValue = "30") Long interval) {
+        if(!url.startsWith("http://") && !url.startsWith("https://")){
+            url = "https://" + url;
+        }
         monitorService.addLinkForMonitoring(url, interval);
-        return "✅ התחלת ניטור של " + url + " כל " + interval + " שניות";
+        return "✅ Started monitoring " + url + " every " + interval + " seconds";
+
     }
 
     @DeleteMapping("/stopLink")
